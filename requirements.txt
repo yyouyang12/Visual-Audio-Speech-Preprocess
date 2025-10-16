@@ -1,0 +1,9 @@
+mne
+pyfftw
+cupy-cuda12x
+tqdm
+numpy
+scipy
+pandas
+matplotlib
+h5py
