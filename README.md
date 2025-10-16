@@ -3,7 +3,6 @@
 This repository contains the complete preprocessing and alignment pipeline for intracranial ECoG recordings collected during movie-watching experiments (Brain Treebank dataset).  
 The goal is to clean, preprocess, and align high-gamma ECoG activity with sentence-level annotations from audiovisual movie stimuli.
 
---
 
 ## Overview
 
@@ -23,7 +22,6 @@ The pipeline includes three main stages:
 3. **Sentence-Level ECoG Alignment**  
    Aligns z-scored ECoG clips with each sentence timestamp.
 
----
 
 ## Data Description
 
@@ -48,7 +46,6 @@ data/
  └── corrupted_elec.json
 ```
 
----
 
 ## Project Structure
 
@@ -76,7 +73,6 @@ Visual-Audio-Speech/
 └── data/                                # (not tracked; local only)
 ```
 
----
 
 ## Installation
 
@@ -92,7 +88,6 @@ Or, if using Google Colab, add at the top of your notebook:
 !pip install -r /content/drive/MyDrive/Visual-Audio-Speech/requirements.txt
 ```
 
----
 
 ## Running the Pipeline
 
@@ -106,7 +101,6 @@ Output:
 - `cleaned_sentences.csv`  
 - `playback_interrupts.csv`
 
----
 
 ### Step 2 — Run ECoG Preprocessing
 
@@ -119,7 +113,6 @@ This will:
 - Perform notch and Hilbert filtering  
 - Save each electrode as `.npy` under `results/processed_ecog_final/`
 
----
 
 ### Step 3 — Align ECoG with Sentences
 
@@ -145,7 +138,6 @@ Each `.pkl` file contains one row per sentence with:
 | start_idx, end_idx | Sample indices in ECoG |
 | ecog_clip | Z-scored neural segment array |
 
----
 
 ## Example Visualization
 
@@ -164,14 +156,12 @@ plt.ylabel("Electrodes")
 plt.show()
 ```
 
----
 
 ## License
 
 This repository is released under the MIT License.  
 Dataset © 2024 MIT Brain Treebank (CC BY 4.0).
 
----
 
 ## Author
 
