@@ -15,7 +15,6 @@ Electrode names were cleaned by removing special characters such as `*`, `#`, an
 
 This selection ensures that subsequent referencing and filtering are based on physiologically reliable electrodes, reducing contamination from malfunctioning contacts.
 
-
 ### 2.2 Common Average Referencing (CAR)
 
 To remove global artifacts and improve signal interpretability, we applied median-based common average referencing (CAR) across all clean electrodes within each trial.  
