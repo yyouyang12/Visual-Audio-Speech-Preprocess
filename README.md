@@ -67,9 +67,6 @@ Visual-Audio-Speech/
 │   ├── run_preprocessing.py             # Entry for ECoG preprocessing
 │   └── run_sentence_align.py            # Entry for alignment step
 │
-├── results/
-│   ├── processed_ecog_final/            # Cleaned electrode data (.npy)
-│   └── sentence_aligned_final/          # Sentence-level aligned pickle files (.pkl)
 └── data/                                # (not tracked; local only)
 ```
 
@@ -80,12 +77,6 @@ Create a new Python environment and install dependencies:
 
 ```bash
 pip install -r requirements.txt
-```
-
-Or, if using Google Colab, add at the top of your notebook:
-
-```python
-!pip install -r /content/drive/MyDrive/Visual-Audio-Speech/requirements.txt
 ```
 
 
@@ -133,39 +124,12 @@ Each `.pkl` file contains one row per sentence with:
 
 | Column | Description |
 |--------|-------------|
-| sentence | Text of the spoken sentence |
+| subject | The experiment subject |
+| trial | The experiment trial |
+| movie | Which movie the subject in this trial watched |
 | speaker | Who spoke the sentence |
+| sentence | Text of the spoken sentence |
+| start, end | Start and end time in movie |
 | start_idx, end_idx | Sample indices in ECoG |
 | ecog_clip | Z-scored neural segment array |
-
-
-## Example Visualization
-
-You can visualize one aligned sentence with:
-
-```python
-import pickle
-import matplotlib.pyplot as plt
-
-df = pickle.load(open("results/sentence_aligned_final/sub_1_trial000_aligned.pkl", "rb"))
-clip = df.iloc[0]["ecog_clip"]
-plt.imshow(clip, aspect="auto", cmap="viridis")
-plt.title(df.iloc[0]["sentence"])
-plt.xlabel("Time (samples)")
-plt.ylabel("Electrodes")
-plt.show()
-```
-
-
-## License
-
-This repository is released under the MIT License.  
-Dataset © 2024 MIT Brain Treebank (CC BY 4.0).
-
-
-## Author
-
-**Yunyan Ouyang**  
-M.S. in Data Science, Columbia University  
-Research Assistant, Neural Acoustic Processing Lab, Columbia University
 
