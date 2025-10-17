@@ -42,9 +42,9 @@ This approach captures high-frequency population activity that correlates closel
 High-gamma signals occasionally exhibit transient high-amplitude artifacts caused by electrode saturation or mechanical disturbance.  
 These spikes can bias amplitude-based metrics if not properly controlled. To mitigate this issue, we applied a continuous amplitude compression method using a scaled hyperbolic tangent function:
 
-\[
+$$
 x_{\text{clean}} = n \times \tanh(x / n)
-\]
+$$
 
 where \( n = 6.0 \) defines the soft saturation threshold in standard deviation units.  
 This approach smoothly limits extreme values while preserving the fine temporal structure of genuine neural fluctuations.
@@ -92,9 +92,9 @@ The extraction window extended from −1.0 seconds before sentence onset to the 
 
 Baseline normalization was applied by z-scoring each segment using the −0.6 to −0.1 second pre-onset window:
 
-\[
+$$
 z = \frac{x - \mu_{\text{baseline}}}{\sigma_{\text{baseline}} + 10^{-6}}
-\]
+$$
 
 This produced a set of sentence-aligned, baseline-normalized ECoG clips across electrodes and trials.  
 These aligned clips were later used for event-related potential (ERP) computation and sentence-level encoding analysis.
@@ -125,18 +125,8 @@ Each aligned dataset was saved as a trial-specific `.pkl` file under `results/se
 | Despike function | 6 × tanh(x / 6) | Smoothly limits amplitude outliers without hard clipping. |
 
 
-## 5. Discussion and Justification
 
-The preprocessing and alignment procedures were designed to maximize both the physiological validity of the extracted neural signals and the temporal precision of their alignment with audiovisual stimuli. The focus on high-gamma activity (70–150 Hz) stems from extensive evidence that this frequency range reliably reflects local cortical population firing, particularly in auditory and speech-related regions. By emphasizing this band, the processed signals retain direct interpretability in terms of cortical information processing during movie comprehension.
+## 5. Summary
 
-A key consideration in the design of this pipeline was the suppression of non-neural artifacts while preserving the fine temporal and spectral structure of genuine neural responses. Median-based common average referencing (CAR) was chosen over the conventional mean approach to ensure robustness against outlier electrodes, which often exhibit excessive noise or unstable baselines. Similarly, the despiking procedure used a smooth hyperbolic tangent function to compress transient high-amplitude artifacts without abrupt truncation or loss of continuity. Together, these steps enhance the stability of the high-gamma envelope and reduce contamination from motion, amplifier drift, and electrical interference.
-
-Temporal alignment between ECoG recordings and movie stimuli was achieved through precise trigger-based synchronization, which corrects for playback pauses or timing drifts inherent in long audiovisual presentations. This ensures that each extracted ECoG segment faithfully corresponds to its intended sentence in the stimulus, maintaining sub-frame temporal accuracy essential for cognitive and linguistic analyses.
-
-The overall pipeline is modular, deterministic, and parameter-transparent, allowing reproducibility and easy adaptation to other datasets. Empirical validation using power spectral density (PSD) and event-related potential (ERP) analyses confirmed that the preprocessing sequence effectively suppresses noise while preserving meaningful neural dynamics. The resulting high-gamma signals exhibit the expected 1/f spectral characteristics and clear temporal alignment with linguistic events, demonstrating both the efficacy and physiological plausibility of the implemented methods.
-
-
-## 6. Summary
-
-In summary, this preprocessing and alignment workflow converts raw intracranial ECoG recordings into clean, sentence-aligned high-gamma representations that are ready for subsequent neural encoding, decoding, and linguistic modeling analyses. Each component—from electrode cleaning and CAR referencing to Hilbert-based feature extraction, soft despiking, and sentence-level alignment—was carefully designed to balance noise suppression with signal preservation. The resulting dataset provides a temporally precise and physiologically interpretable basis for studying the neural dynamics of speech and audiovisual comprehension. The methodology follows and extends established best practices in recent ECoG research (Mesgarani et al., 2014; Akbari et al., 2019; Tang et al., 2024), emphasizing reproducibility, interpretability, and alignment accuracy as core principles of analysis.
+In summary, this preprocessing and alignment workflow converts raw intracranial ECoG recordings into clean, sentence-aligned high-gamma representations that are ready for subsequent neural encoding, decoding, and linguistic modeling analyses. Each component—from electrode cleaning and CAR referencing to Hilbert-based feature extraction, soft despiking, and sentence-level alignment—was carefully designed to balance noise suppression with signal preservation. The resulting dataset provides a temporally precise and physiologically interpretable basis for studying the neural dynamics of speech and audiovisual comprehension. The methodology follows and extends established best practices in emphasizing reproducibility, interpretability, and alignment accuracy as core principles of analysis.
 
