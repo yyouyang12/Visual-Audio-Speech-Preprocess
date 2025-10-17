@@ -17,7 +17,6 @@ from tqdm import tqdm
 from joblib import Parallel, delayed
 from src.preprocessing.preprocess_pipeline import get_clean_electrodes
 
-
 # ==========================================
 # Load preprocessed ECoG data for one trial
 # ==========================================
