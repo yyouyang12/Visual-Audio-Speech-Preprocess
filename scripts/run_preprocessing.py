@@ -15,3 +15,4 @@ for subj in subjects:
     for trial in trials:
         print(f"\n=== Processing {subj}_{trial} ===")
         process_trial(subj, trial, DATA_ROOT, CAR_CACHE, SAVE_DIR)
+        
