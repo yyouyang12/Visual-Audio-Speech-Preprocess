@@ -1,7 +1,7 @@
 # Visual-Audio-Speech: ECoG Alignment and Preprocessing Pipeline
 
 This repository contains the complete preprocessing and alignment pipeline for intracranial ECoG recordings collected during movie-watching experiments (Brain Treebank dataset). The goal is to clean, preprocess, and align high-gamma ECoG activity with sentence-level annotations from audiovisual movie stimuli.   
-Below gives the instructions on how to use the code. For more details information about what preprocessing techniques we used and why we use them can be found in DATA_PROCESSING.md
+Below gives the instructions on how to use the code. For detailed explanations of preprocessing and alignment techniques, see the [DATA_PROCESSING.md](./DATA_PROCESSING.md) file.
 
 
 ## Overview
