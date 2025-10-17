@@ -6,7 +6,6 @@ import mne
 from pyfftw.interfaces.numpy_fft import fft, ifft, fftfreq
 from tqdm import tqdm
 
-
 def auto_bands(fq_min=4.0749286538265, fq_max=200., scale=7.):
     """
     Get the frequency bands of interest for the neural signal decomposition.
