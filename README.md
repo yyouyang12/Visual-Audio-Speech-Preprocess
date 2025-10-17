@@ -91,7 +91,7 @@ python src/preprocessing/prepare_sentences.py
 Output:
 - `cleaned_sentences.csv`  
 - `playback_interrupts.csv`
-
+- 
 
 ### Step 2 — Run ECoG Preprocessing
 
@@ -132,4 +132,3 @@ Each `.pkl` file contains one row per sentence with:
 | start, end | Start and end time in movie |
 | start_idx, end_idx | Sample indices in ECoG |
 | ecog_clip | Z-scored neural segment array |
-
