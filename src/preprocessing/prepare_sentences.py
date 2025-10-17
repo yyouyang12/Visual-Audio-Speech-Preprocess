@@ -19,8 +19,8 @@ import json
 import matplotlib.pyplot as plt
 from google.colab import drive
 
-# Mount Google Drive if using Colab
-drive.mount('/content/drive')
+## Mount Google Drive if using Colab
+# drive.mount('/content/drive')
 
 # ==========================================
 # Path setup
