@@ -91,4 +91,3 @@ def process_trial(subject, trial, data_root, car_cache_dir, save_dir):
         idx = idx_map[e]
         np.save(out, preprocess_electrode(subject, trial, idx, data_root, car_path))
     return True
-
