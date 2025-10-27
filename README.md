@@ -3,6 +3,11 @@
 This repository contains the complete preprocessing and alignment pipeline for intracranial ECoG recordings collected during movie-watching experiments (Brain Treebank dataset). The goal is to clean, preprocess, and align high-gamma ECoG activity with sentence-level annotations from audiovisual movie stimuli.   
 Below gives the instructions on how to use the code. For detailed explanations of preprocessing and alignment techniques, see the [DATA_PROCESSING.md](./DATA_PROCESSING.md) file.
 
+The official Brain Treebank code release already includes several useful [preprocessing](https://github.com/czlwang/brain_treebank_code_release/blob/master/data/h5_data_reader.py) steps such as notch filtering, band-pass filtering, rereferencing, and a simple despike function. In their implementation, spikes are detected when the z-score exceeds four, and nearby samples are reduced by a fixed factor. While this removes large artifacts, it uses one global threshold and can either miss small transients or suppress real neural bursts.
+
+Our preprocessing makes this step more adaptive. We estimate local noise levels per channel using the median absolute deviation (MAD), detect spikes relative to that baseline, and apply light smoothing to keep the waveform natural. This produces cleaner high-gamma activity while preserving true neural dynamics.
+
+We also noticed that some movie sessions in the Brain Treebank dataset contain playback interruptions. Since the original release did not describe how these gaps were handled, we remove sentences that occur near interruptions to reduce timing drift and ensure stable alignment between the movie and the neural data.
 
 ## Overview
 
