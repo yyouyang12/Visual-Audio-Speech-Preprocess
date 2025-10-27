@@ -5,7 +5,8 @@ Below gives the instructions on how to use the code. For detailed explanations o
 
 The official Brain Treebank code release already includes several useful [preprocessing](https://github.com/czlwang/brain_treebank_code_release/blob/master/data/h5_data_reader.py) steps such as notch filtering, band-pass filtering, rereferencing, and a simple despike function. In their implementation, spikes are detected when the z-score exceeds four, and nearby samples are reduced by a fixed factor. While this removes large artifacts, it uses one global threshold and can either miss small transients or suppress real neural bursts.
 
-Our preprocessing makes this step more adaptive. We estimate local noise levels per channel using the median absolute deviation (MAD), detect spikes relative to that baseline, and apply light smoothing to keep the waveform natural. This produces cleaner high-gamma activity while preserving true neural dynamics.
+To make this step more physiologically adaptive, we applied a soft-clipping despiking method based on a scaled hyperbolic tangent function:
+x_clean = n × tanh(x / n), where n = 6.0 defines the soft saturation threshold in standard-deviation units. This smooth nonlinear compression limits extreme values without hard thresholding and maintains the natural temporal structure of neural signals. Compared with the simple z-score–based clipping in the original Brain Treebank preprocessing, our approach better preserves genuine high-gamma fluctuations while suppressing brief electrode-saturation artifacts.
 
 We also noticed that some movie sessions in the Brain Treebank dataset contain playback interruptions. Since the original release did not describe how these gaps were handled, we remove sentences that occur near interruptions to reduce timing drift and ensure stable alignment between the movie and the neural data.
 
@@ -96,7 +97,7 @@ python src/preprocessing/prepare_sentences.py
 Output:
 - `cleaned_sentences.csv`  
 - `playback_interrupts.csv`
-- 
+  
 
 ### Step 2 — Run ECoG Preprocessing
 
